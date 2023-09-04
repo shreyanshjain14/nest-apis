@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 
 import { Validate, validate } from '@nestjs/class-validator';
 import { UserService } from '../user.service';
 import { LoginDto } from '../dto/create-user.dto';
+import { jwtGuard } from '../guards/jwtGuard';
 
 //import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -24,8 +26,9 @@ export class UserController {
   }
 
   @Get('products')
+  @UseGuards(jwtGuard)
   findAll() {
-    return this.userService.findAll();
+    return this.userService.findAllProducts();
   }
 
   @Get(':id')

@@ -8,7 +8,6 @@ import {
   Delete,
 } from '@nestjs/common';
 
-import { Validate, validate } from '@nestjs/class-validator';
 import { UserService } from '../user.service';
 import { LoginDto } from '../dto/create-user.dto';
 //import { UpdateUserDto } from './dto/update-user.dto';
@@ -18,13 +17,8 @@ export class AdminController {
   constructor(private readonly userService: UserService) {}
 
   @Post('login')
-  async login(@Body() createUserDto: LoginDto) {
+  async adminLogin(@Body() createUserDto: LoginDto) {
     return await this.userService.login(createUserDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.userService.findAll();
   }
 
   @Get(':id')
